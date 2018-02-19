@@ -1,0 +1,6 @@
+g++ -O2-std=c++11 main.cpp -o output `pkg-config --cflags --libs opencv`
+
+
+g++ -std=c++11 color_calib.cpp -o color_calib `pkg-config --cflags --libs opencv`
+
+g++ -O2 -Wall -std=c++11 main.cpp -o output `pkg-config --cflags --libs opencv`
