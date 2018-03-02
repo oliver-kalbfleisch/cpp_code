@@ -23,6 +23,8 @@ raspicam/raspicam_cv.h
 -
 unistd.h
 -
+time.h
+-
 boost/asio/io_service.hpp
 -
 boost/bind.hpp

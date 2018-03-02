@@ -7,6 +7,7 @@
 
 #include <raspicam/raspicam_cv.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <boost/asio/io_service.hpp>
 #include <boost/bind.hpp>
