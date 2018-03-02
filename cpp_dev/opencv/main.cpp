@@ -88,7 +88,7 @@ void getCameraFrame(circular_buffer<Mat> *buff,raspicam::RaspiCam_Cv *Camera )
 	buff->put(imgOriginal);   
 }
 }
-void color_detectThread(vector<int> *color_boundary, Mat *imgOriginal, Point2f *contourCenter,int id)
+void color_detectThread(vector<int> *color_boundary, Mat *imgOriginal, Point2f *contourCenter,const int id)
 {
 	//TODO CHECK INPUT VARS
 	Mat imgThresholded;
@@ -108,6 +108,11 @@ int main()
 	Mat imgOriginal;
 	Mat imgHSV;
 	vector<Point2f> *contourCenters=new vector<Point2f>(5);
+	boost::asio::io_service udp_io_service;
+	const string host="192.168.1.10";
+	const string port= "8888"; 
+	UDPClient client(udp_io_service,host,port);
+	
 
 	vector<vector<int> > colorThreshold(5);
 	//vector structure RL,RH,GL,GH,BL,BH
@@ -133,7 +138,10 @@ int main()
 	{
 		cout << "Cannot open the web cam" << endl;
 	}
+	cout<<"camera warmup phase started"<<endl;
 	sleep(5); 
+	cout<<"warmup finished"<<endl;
+	
 	//auto start= chrono::high_resolution_clock::now();
 	//auto finish= chrono::high_resolution_clock::now();
 	//chrono::duration<double> elapsed= finish -start;
@@ -141,6 +149,7 @@ int main()
 
 	//setup thread for camera frame read
 	boost::thread cameraThread(getCameraFrame,img_buffer,Camera);
+	cout<<"waiting for buffer to fill"<<endl;
 	sleep(5); 
 	//cameraThread.detach();
 	//setup threadpool
@@ -157,7 +166,9 @@ int main()
 	while(true){
 	//read frame from cyclic buffer
 	imgOriginal= img_buffer->get();
+	cout<<imgOriginal<<endl;
 	//Check if buffer contains frames
+	cout<<imgOriginal.cols<<"|"<<imgOriginal.rows<<endl;
 	if(imgOriginal.cols>0 && imgOriginal.rows >0){
 		imshow( "Display window", imgOriginal );  
 		for(unsigned int k=0;k < colorThreshold.size(); k++)
@@ -168,8 +179,18 @@ int main()
 	cout<<"wait"<<endl;
 	wait_for_pool();
 	cout<<"pool finished"<<endl;
+	//
+	stringstream ss;
+	ss<<"hello world "<<"123456 "<<"moep";
+	const string s=ss.str();
+	client.send(s);
+	cout<<s<<endl;
 	namedWindow( "Display window", WINDOW_AUTOSIZE ); // Create a window for display.
 	
+	}
+	else
+	{
+		cout<<"waiting for buffer"<<endl;
 	}
 	// Wait for a keystroke in the window
 	if((char)27==(char)waitKey(1)){
@@ -184,8 +205,6 @@ int main()
 	//ioService.stop();
 	//threadpool.join_all();
 }
-	return 0;
-
 }
 
 

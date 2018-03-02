@@ -3,6 +3,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "trackingCore/cyclicBuffer.h"
+#include "trackingCore/UDP_Client.hpp"
 
 #include <raspicam/raspicam_cv.h>
 #include <unistd.h>

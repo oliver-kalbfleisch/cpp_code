@@ -4,6 +4,7 @@
 CMakeFiles/tracker.dir/main.cpp.o
  /home/pi/Desktop/cpp_dev/opencv/main.cpp
  /home/pi/Desktop/cpp_dev/opencv/main.h
+ /home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
  /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
  /usr/local/include/opencv/cxcore.h
  /usr/local/include/opencv2/calib3d.hpp

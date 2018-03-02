@@ -220,6 +220,12 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 OpenCV_DIR:PATH=/usr/local/share/OpenCV
 
 //Value Computed by CMake
+TrackingCore_BINARY_DIR:STATIC=/home/pi/Desktop/cpp_dev/opencv/build/trackingCore
+
+//Value Computed by CMake
+TrackingCore_SOURCE_DIR:STATIC=/home/pi/Desktop/cpp_dev/opencv/trackingCore
+
+//Value Computed by CMake
 tracker_BINARY_DIR:STATIC=/home/pi/Desktop/cpp_dev/opencv/build
 
 //Value Computed by CMake

@@ -17,6 +17,8 @@ opencv2/imgproc/imgproc.hpp
 /home/pi/Desktop/cpp_dev/opencv/opencv2/imgproc/imgproc.hpp
 trackingCore/cyclicBuffer.h
 /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
+trackingCore/UDP_Client.hpp
+/home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
 raspicam/raspicam_cv.h
 -
 unistd.h
@@ -34,6 +36,14 @@ iostream
 chrono
 -
 ctime
+-
+
+/home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
+iostream
+-
+boost/array.hpp
+-
+boost/asio.hpp
 -
 
 /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
