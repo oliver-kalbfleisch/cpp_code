@@ -17,6 +17,12 @@
 //The threading library used by boost-thread
 BOOST_THREAD_LIBRARY:FILEPATH=/usr/lib/arm-linux-gnueabihf/libpthread.so
 
+//Boost algorithm library (debug)
+Boost_ALGORITHM_LIBRARY_DEBUG:FILEPATH=Boost_ALGORITHM_LIBRARY_DEBUG-NOTFOUND
+
+//Boost algorithm library (release)
+Boost_ALGORITHM_LIBRARY_RELEASE:FILEPATH=Boost_ALGORITHM_LIBRARY_RELEASE-NOTFOUND
+
 //Boost atomic library (debug)
 Boost_ATOMIC_LIBRARY_DEBUG:FILEPATH=/usr/lib/arm-linux-gnueabihf/libboost_atomic.so
 
@@ -239,6 +245,10 @@ trackingCore_LIB_DEPENDS:STATIC=
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_ALGORITHM_LIBRARY_DEBUG
+Boost_ALGORITHM_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_ALGORITHM_LIBRARY_RELEASE
+Boost_ALGORITHM_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_ATOMIC_LIBRARY_DEBUG
 Boost_ATOMIC_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_ATOMIC_LIBRARY_RELEASE
@@ -413,7 +423,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr/local][v3.3.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Components requested for this build tree.
-_Boost_COMPONENTS_SEARCHED:INTERNAL=atomic;chrono;date_time;program_options;system;thread
+_Boost_COMPONENTS_SEARCHED:INTERNAL=algorithm;atomic;chrono;date_time;program_options;system;thread
 //Last used Boost_INCLUDE_DIR value.
 _Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
 //Last used Boost_LIBRARY_DIR_DEBUG value.

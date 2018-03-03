@@ -5,6 +5,8 @@ using namespace std;
 const int numThreads=4;
 const unsigned short frame_width=640;
 const unsigned short frame_height=480;
+const unsigned int x_offset= 30;
+const unsigned int y_offset= 30;
 mutex detector_mutex;
 int number_of_tasks;
 boost::mutex task_count_mutex;
@@ -33,10 +35,6 @@ void image_optimizations(Mat *imgThresholded)
 	//morphological opening (remove small objects from the foreground)
 	erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(5, 5)) );
 	dilate(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(5, 5)) );
-
-	//morphological closing (fill small holes in the foreground)
-	dilate(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(5, 5)) );
-	erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(5, 5)) );
 }
 //function takes in HSV image and color boundaries for detection
 void detect_color(Mat *image,vector<int> *thresholds,Mat *imgThresholded)
@@ -70,14 +68,45 @@ void detectContour(Mat *mask,Point2i *center, Rect *roi)
 	RotatedRect minRect = minAreaRect(Mat(contourPoints[largest_contour_index]));
 	Rect bRect=minRect.boundingRect();
 	//TODO generate corner points for roi rect
-	cout<<*roi<<endl;
-	cout<<bRect.tl().x<<endl;
-	//unsigned int x0=clamp(bRect.tl().x-10,0,frame_width);
-	//unsigned int y0=clamp bRect.tl().y-10,0,frame_height),
-	//unsigned int roi_width= bRect.br().x-bRect.tl().x;
-	//unsigned int roi_height=bRect.br().y-bRect.tl().y;
-	*roi=bRect;
-	cout<< bRect.size()<<endl;
+	cout<<"prev roi :"<<*roi<<endl;
+	//TODO Calculate Rect
+	/*
+	 * # tl------tl+w
+    #  +       +
+    #  +       +
+    #  +       +
+    #  tl+h-----br
+	 */
+	unsigned int x0=boost::algorithm::clamp((bRect.tl().x-x_offset),0,frame_width);
+	unsigned int y0=boost::algorithm::clamp((bRect.tl().y-y_offset),0,frame_height);
+	
+	//cout<<"bRect size "<<bRect.size()<<endl;
+	cout<<"center "<<minRect.center<<endl;
+	//TODO limit roi area to frame boundaries
+	unsigned int corr=0;
+	unsigned int pos_right=x0+bRect.size().width+(2*(x_offset));
+	cout<<"pos right :"<< pos_right<<endl;
+	if(pos_right > frame_width)
+	{
+		
+		corr=pos_right-frame_width;
+		cout<<"Xcorr: "<<corr<<endl;
+	}
+	unsigned int width_clamped=boost::algorithm::clamp(bRect.size().width+(2*(x_offset))-corr,0,frame_width);
+	//cout<<"width clamped "<<width_clamped<<endl;
+	unsigned int pos_bottom=y0+bRect.size().height+(2*(y_offset));
+	cout<<"pos bottom "<<pos_bottom<<endl;
+	if(pos_right > frame_height)
+	{
+		
+		corr=pos_bottom-frame_height;
+		cout<<"Ycorr: "<<corr<<endl;
+	}
+	//cout<<"width clamped:"<<width_clamped<<"|"<<"brect width"<<bRect.size().width<<endl;
+	unsigned int height_clamped=boost::algorithm::clamp(bRect.size().height+(2*(y_offset))-corr,0,frame_height);
+	//cout<<"height clamped:"<<height_clamped<<"|"<<"brect width"<<bRect.size().height<<endl;
+	//*roi=
+	cout<<"calulated roi:"<<Rect(x0,y0,width_clamped,height_clamped)<<endl;
 	*center= minRect.center;	
 		}
 	else
@@ -181,11 +210,10 @@ int main()
 		{
 			 
 			 //time <=0,1 ms
-			 //colorThreshold.size()
 				for(unsigned int k=0;k <1; k++)
 			{
 				Mat cropped(*imgOriginal,imageROIS->at(k));
-				ioService.post(boost::bind(color_detectThread,(*colorThreshold)[k],cropped,(*contourCenters)[k],(&(*imageROIS)[k])));
+				ioService.post(boost::bind(color_detectThread,(*colorThreshold)[k],*imgOriginal,(*contourCenters)[k],(&(*imageROIS)[k])));
 				number_of_tasks++;
 			}
 			t=clock();
@@ -197,7 +225,6 @@ int main()
 			stringstream ss;
 			for(unsigned int i=0;i < (*contourCenters).size();i++)
 			{
-			    //color_detectThread((*colorThreshold)[0],*imgOriginal,(*contourCenters)[0]);
 				ss<<(*contourCenters).at(0)<<";";
 			}
 			

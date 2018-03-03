@@ -33,6 +33,8 @@ boost/thread/thread.hpp
 -
 boost/thread/barrier.hpp
 -
+boost/algorithm/clamp.hpp
+-
 iostream
 -
 chrono
