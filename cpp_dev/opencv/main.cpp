@@ -208,6 +208,7 @@ void setupColorCalibration()
     createTrackbar("High B","ObjectDetection",&high_b,255,high_b_thresh);
 }
 int main()
+==== BASE ====
 {
     cout<<"****RHOT Realtim Hand and Object Tracker v0.1****"<<endl;
     cout<<"*"<<endl;
