@@ -3,6 +3,7 @@
 
 CMakeFiles/tracker.dir/main.cpp.o: ../main.cpp
 CMakeFiles/tracker.dir/main.cpp.o: ../main.h
+CMakeFiles/tracker.dir/main.cpp.o: ../trackingCore/MulticastReciever.h
 CMakeFiles/tracker.dir/main.cpp.o: ../trackingCore/UDP_Client.hpp
 CMakeFiles/tracker.dir/main.cpp.o: ../trackingCore/cyclicBuffer.h
 CMakeFiles/tracker.dir/main.cpp.o: /usr/local/include/opencv/cxcore.h

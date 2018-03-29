@@ -1,2 +1,2 @@
-/usr/bin/ar qc libtrackingCore.a  CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o
+/usr/bin/ar qc libtrackingCore.a  CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
 /usr/bin/ranlib libtrackingCore.a

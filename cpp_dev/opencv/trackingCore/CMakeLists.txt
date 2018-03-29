@@ -1,2 +1,2 @@
 project(TrackingCore)
-add_Library(trackingCore cyclicBuffer.cpp UDP_Client.hpp)
+add_Library(trackingCore cyclicBuffer.cpp UDP_Client.hpp MulticastReciever.cpp)

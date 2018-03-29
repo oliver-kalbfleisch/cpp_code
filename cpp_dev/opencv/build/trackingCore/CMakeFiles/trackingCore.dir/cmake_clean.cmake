@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
+  "CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
   "libtrackingCore.pdb"
   "libtrackingCore.a"
 )

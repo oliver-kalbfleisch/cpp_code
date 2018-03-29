@@ -81,17 +81,43 @@ trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o.provides: trackingCo
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o.provides.build: trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o
 
 
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o: trackingCore/CMakeFiles/trackingCore.dir/flags.make
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o: ../trackingCore/MulticastReciever.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
+	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o -c /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp
+
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i"
+	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp > CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
+
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s"
+	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
+
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.requires:
+
+.PHONY : trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.requires
+
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.provides: trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.requires
+	$(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.provides.build
+.PHONY : trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.provides
+
+trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.provides.build: trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
+
+
 # Object files for target trackingCore
 trackingCore_OBJECTS = \
-"CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
+"CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o" \
+"CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
 
 # External object files for target trackingCore
 trackingCore_EXTERNAL_OBJECTS =
 
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o
+trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/build.make
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libtrackingCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libtrackingCore.a"
 	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -P CMakeFiles/trackingCore.dir/cmake_clean_target.cmake
 	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trackingCore.dir/link.txt --verbose=$(VERBOSE)
 
@@ -101,6 +127,7 @@ trackingCore/CMakeFiles/trackingCore.dir/build: trackingCore/libtrackingCore.a
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/build
 
 trackingCore/CMakeFiles/trackingCore.dir/requires: trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o.requires
+trackingCore/CMakeFiles/trackingCore.dir/requires: trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.requires
 
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/requires
 

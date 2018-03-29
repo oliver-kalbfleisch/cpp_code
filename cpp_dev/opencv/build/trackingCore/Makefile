@@ -125,6 +125,33 @@ trackingCore/fast:
 	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/build
 .PHONY : trackingCore/fast
 
+MulticastReciever.o: MulticastReciever.cpp.o
+
+.PHONY : MulticastReciever.o
+
+# target to build an object file
+MulticastReciever.cpp.o:
+	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
+.PHONY : MulticastReciever.cpp.o
+
+MulticastReciever.i: MulticastReciever.cpp.i
+
+.PHONY : MulticastReciever.i
+
+# target to preprocess a source file
+MulticastReciever.cpp.i:
+	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
+.PHONY : MulticastReciever.cpp.i
+
+MulticastReciever.s: MulticastReciever.cpp.s
+
+.PHONY : MulticastReciever.s
+
+# target to generate assembly for a file
+MulticastReciever.cpp.s:
+	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
+.PHONY : MulticastReciever.cpp.s
+
 cyclicBuffer.o: cyclicBuffer.cpp.o
 
 .PHONY : cyclicBuffer.o
@@ -161,6 +188,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... trackingCore"
+	@echo "... MulticastReciever.o"
+	@echo "... MulticastReciever.i"
+	@echo "... MulticastReciever.s"
 	@echo "... cyclicBuffer.o"
 	@echo "... cyclicBuffer.i"
 	@echo "... cyclicBuffer.s"
