@@ -1,6 +1,9 @@
 #include "main.h"
 using namespace cv;
 using namespace std;
+namespace pt= boost::property_tree;
+
+
 
 const int numThreads=4;
 const unsigned short frame_width=640;
@@ -30,6 +33,7 @@ int low_b=30;
 int high_r = 100;
 int high_g = 100;
 int high_b = 100;
+string windowTitle;
 
 void TaskComplete()
 {
@@ -165,50 +169,223 @@ void color_detectThread(vector<int> &color_boundary, Mat imgOriginal, Point2i &c
 void low_r_thresh(int, void *)
 {
     low_r=min(high_r-1,low_r);
-    setTrackbarPos("Low R","ObjectDetection",low_r);
+    setTrackbarPos("Low R",::windowTitle,low_r);
 }
 void high_r_thresh(int,void *)
 {
     high_r=max(high_r,low_r+1);
-    setTrackbarPos("High R","ObjectDetection",high_r);
+    setTrackbarPos("High R",::windowTitle,high_r);
 }
 void low_g_thresh(int, void *)
 {
     low_g=min(high_g-1,low_g);
-    setTrackbarPos("Low G","ObjectDetection",low_g);
+    setTrackbarPos("Low G",::windowTitle,low_g);
 }
 void high_g_thresh(int,void *)
 {
     high_g=max(high_g,low_g+1);
-    setTrackbarPos("High G","ObjectDetection",high_g);
+    setTrackbarPos("High G",::windowTitle,high_g);
 }
 void low_b_thresh(int, void *)
 {
     low_b=min(high_b-1,low_b);
-    setTrackbarPos("Low B","ObjectDetection",low_b);
+    setTrackbarPos("Low B",::windowTitle,low_b);
 }
 void high_b_thresh(int,void *)
 {
     high_b=max(high_b,low_b+1);
-    setTrackbarPos("High B","ObjectDetection",high_b);
+    setTrackbarPos("High B",::windowTitle,high_b);
 }
 void callbackButton(int state,void* userdata)
 {
     cout<<"button pressed!"<<state<<userdata<<endl;
 }
-void setupColorCalibration()
+void setupColorTrackbars()
 {
-    namedWindow("ObjectDetection",WINDOW_NORMAL);
-    //createButton("Set Value",callbackButton);
-    createTrackbar("Low R","ObjectDetection",&low_r,255,low_r_thresh);
-    createTrackbar("High R","ObjectDetection",&high_r,255,high_r_thresh);
-    createTrackbar("Low G","ObjectDetection",&low_g,255,low_g_thresh);
-    createTrackbar("High G","ObjectDetection",&high_g,255,high_g_thresh);
-    createTrackbar("Low B","ObjectDetection",&low_b,255,low_b_thresh);
-    createTrackbar("High B","ObjectDetection",&high_b,255,high_b_thresh);
+    namedWindow(::windowTitle,WINDOW_NORMAL);
+    createTrackbar("Low R",::windowTitle,&low_r,255,low_r_thresh);
+    createTrackbar("High R",::windowTitle,&high_r,255,high_r_thresh);
+    createTrackbar("Low G",::windowTitle,&low_g,255,low_g_thresh);
+    createTrackbar("High G",::windowTitle,&high_g,255,high_g_thresh);
+    createTrackbar("Low B",::windowTitle,&low_b,255,low_b_thresh);
+    createTrackbar("High B",::windowTitle,&high_b,255,high_b_thresh);
 }
+void saveDataToJSON(float version, string colorMode, int numTrackedColors,vector<vector<int> >* colorThreshold)
+{
+	pt::ptree dataRoot;
+	//Add metadta
+	dataRoot.put("version",version);
+	dataRoot.put("colorMode",colorMode);
+	dataRoot.put("numTrackedColors",numTrackedColors);
+	//Add colors array data
+	pt::ptree colors_node;
+	cout<<colorThreshold->size()<<endl;
+	for(int i=0;i<numTrackedColors;i++)
+	{
+	//vector structure RL,RH,GL,GH,BL,BH
+	 vector<int> colorData=(*colorThreshold)[i];
+		pt::ptree color;
+		color.put("colorID",i);
+		color.put("name","changeme");
+		cout<<colorData[0];
+		/*color.put("rUpper",colorData[1]);
+		color.put("rlower",colorData[0]);
+		color.put("gUpper",colorData[3]);
+		color.put("glower",colorData[2]);
+		color.put("bUpper",colorData[5]);
+		color.put("blower",colorData[4]);*/
+		colors_node.push_back(make_pair("",color));
+	
+	 
+	}
+	dataRoot.add_child("colors",colors_node);
+	pt::write_json(cout,dataRoot);
+}
+void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal,raspicam::RaspiCam_Cv *Camera )
+{
+    cout<<"*"<<endl;
+    cout<<"*System will now switch to color calibration mode."<<endl;
+    cout<<"*\n";
+    cout<<"How many colors do you want to detect (max. 6)? ";
+    char resp;
+    cin>>resp;
+    int numInput=resp-'0';
+    if(numInput>0)
+    {
+        colorThreshold=new vector<vector<int> >(numInput);
+        cout<<colorThreshold->size()<<endl;
+    }
+    else
+    {
+        cout<<"Invalid input"<<endl;
+        return;
+    }
+    //Setup Camera
+    if ( !Camera->open())
+    {
+        cout<<"*"<<endl;
+        cout << "Cannot open the web cam" << endl;
+        return;
+    }
+    cout<<"*"<<endl;
+    cout<<"*Camera warmup phase started"<<endl;
+    sleep(5);
+    cout<<"*"<<endl;
+    cout<<"*Warmup finished"<<endl;
+
+    cout<<"*The system will now be displaying a trackbar window with the color \n boundary values and the thresholded image results."<<endl;
+    Mat res;
+    bool calibrating=true;
+    int colorCounter=1;
+    ::windowTitle="Calibration for Color Nr. "+to_string(colorCounter);
+    setupColorTrackbars();
+    while(calibrating)
+    {
+        //grab camera Frame
+        bool grabbed=Camera->grab();
+        if(grabbed)
+        {
+            try {
+                Camera->retrieve(*imgOriginal);
+            } catch(...)
+            {
+                cout<<"*"<<endl;
+                cout<<"*Camera retrieve error"<<endl;
+            }
+
+            inRange(*imgOriginal,Scalar(low_b,low_g,low_r),Scalar(high_b,high_g,high_r),res);
+            imshow(::windowTitle,res);
+        }
+        if((char)10==(char)waitKey(1)) {
+            cout<<low_r<<"|"<<high_r<<"|"<<low_g<<"|"<<high_g<<"|"<<low_b<<"|"<<high_b<<endl;
+            //Write calibration values into vector
+            //(*colorThreshold)[colorCounter-1]= {low_r,high_r,low_g,high_g,low_b,high_b};
+            //TODO Set values for current color
+            destroyAllWindows();
+            colorCounter++;
+            ::windowTitle="Calibration for Color Nr. "+to_string(colorCounter);
+            setupColorTrackbars();
+            if(colorCounter>numInput) {
+                Camera->release();
+                calibrating=false;
+                cout<<"*Calibration finished, using new values."<<endl;
+                cout<<"*\n";
+                cout<<"Do you want to save the new Values to a JSON file? (y/n)";
+                char saveFile;
+                cin>>saveFile;
+                switch(saveFile)
+                {
+                case 'n':
+                {
+					cout<<"*\n"<<"System will use new values without saving to file.\n";
+                    break;
+                }
+                case 'y':
+                {
+					cout<<"*\n"<<"Please enter filename for new file in format <filename>.json : " ;
+					string userFileName;
+					cin>>userFileName;
+					cout<<"New JSON file "<<userFileName<<" will be saved to directory of the executable.\n";
+					//TODO save to JSON
+					saveDataToJSON(1.0,"rgb",numInput,colorThreshold);
+                    break;
+                }
+                }
+            }
+        }
+
+    }
+}
+void readJSONAndSetValues(vector<vector<int> >* colorThreshold, string filepath)
+{
+
+    cout<<"*"<<endl;
+    cout<<"*Reading JSON Data from colorCalibration.json to get values ..."<<endl;
+    //json file read preps
+    pt::ptree jsonRoot;
+    pt::read_json(filepath,jsonRoot);
+    float version= jsonRoot.get<float>("version",0);
+    cout<<"*"<<endl;
+    cout<<"*JSON File version: "<<version<<endl;
+    cout<<"*"<<endl;
+    string colorMode=jsonRoot.get<string>("colorMode");
+    cout<<"*Color Mode :"<<colorMode<<endl;
+    cout<<"*"<<endl;
+    int numColors=jsonRoot.get<int>("numTrackedColors");
+    cout<<"*Number of colors tracked: "<<numColors<<endl;
+    cout<<"*"<<endl;
+    cout<<"*Color boundary values: "<<endl;
+    cout<<"*"<<endl;
+    //Init Vector for correct number of colors
+    colorThreshold=new vector<vector<int> >(numColors);
+    //iterate over Dataset and display values that will be set
+    for(pt::ptree::value_type &color : jsonRoot.get_child("colors"))
+    {
+        cout<<"*Color name: "<<color.second.get<string>("name")<<endl;
+        cout<<"*\n";
+        int rUpper=color.second.get<int>("rUpper");
+        cout<<"*rUpper:"<<rUpper<<endl;
+        int rLower=color.second.get<int>("rLower");
+        cout<<"*rLower:"<<rLower<<endl;
+        cout<<"*\n";
+        int gUpper=color.second.get<int>("gUpper");
+        cout<<"*gUpper:"<<gUpper<<endl;
+        int gLower=color.second.get<int>("gLower");
+        cout<<"*gLower:"<<gLower<<endl;
+        cout<<"*\n";
+        int bUpper=color.second.get<int>("bUpper");
+        cout<<"*bUpper:"<<bUpper<<endl;
+        int bLower=color.second.get<int>("bLower");
+        cout<<"*bLower:"<<bLower<<endl;
+        cout<<"*\n*\n";
+        // Initialize default color Threshold values
+        //vector structure RL,RH,GL,GH,BL,BH
+        (*colorThreshold)[color.second.get<int>("colorID")]= {rLower,rUpper,gLower,gUpper,bLower,bUpper};
+    }
+}
+
+
 int main()
-==== BASE ====
 {
     cout<<"****RHOT Realtim Hand and Object Tracker v0.1****"<<endl;
     cout<<"*"<<endl;
@@ -240,75 +417,29 @@ int main()
 
 
     //circular_buffer<Mat> *img_buffer= new circular_buffer<Mat>(5);
+    //Default init
     vector<vector<int> > *colorThreshold=new vector<vector<int> >(5);
-	cout<<"T*he system has a set of predefined values for tracking colors.\n You can also switch to color calibration mode which does require a monitor to be conected."<<endl;
-	cout<<"*"<<endl;
+    cout<<"*The system has a set of predefined values for tracking colors.\n You can also switch to color calibration mode which does require a monitor to be conected."<<endl;
+    cout<<"*"<<endl;
     cout<<"*Do you want to continue with the default color values for 5 markers? (y/n)  ";
     char response;
     cin>>response;
     switch (response) {
     case 'y': {
-        // Initialize default color Threshold values
-        //vector structure RL,RH,GL,GH,BL,BH
-        //blue
-        (*colorThreshold)[0]= {91,138,160,178,166,193};
-        //orange
-        (*colorThreshold)[1]= {203,221,152,178,82,108};
-        //green
-        (*colorThreshold)[2]= {163,208,176,216,0,116};
-        //pink
-        (*colorThreshold)[3]= {214,255,138,176,162,195};
-        //yellow
-        (*colorThreshold)[4]= {205,255,195,255,29,109};
-        cout<<"*"<<endl;
-        cout<<"*System will utilize default values."<<endl;
-        cout<<"*"<<endl;
+        readJSONAndSetValues(colorThreshold,"colorCalibration.json");
         break;
     }
     case 'n': {
-		cout<<"*"<<endl;
+        cout<<"*"<<endl;
         cout<<"*Caution: The color calibration mode cannot be run in headless mode\n and requires a monitor to be attached to the Raspberry"<<endl;
         cout<<"*"<<endl;
         cout<<"*Do you want to continue? (y/n) ";
         char resp;
         cin>>resp;
-           switch(resp)
+        switch(resp)
         {
         case 'y': {
-            //TODO Add Qt library support
-            cout<<"*"<<endl;
-            cout<<"*System will now switch to color calibration mode."<<endl;
-            setupColorCalibration();
-            if ( !Camera->open())
-            {
-                cout<<"*"<<endl;
-                cout << "Cannot open the web cam" << endl;
-                return -1;
-            }
-            bool calibrating=true;
-            while(calibrating)
-            {
-
-                bool grabbed=Camera->grab();
-                if(grabbed)
-                {
-                    try {
-                        Camera->retrieve(*imgOriginal);
-                    } catch(...)
-                    {
-                        cout<<"*"<<endl;
-                        cout<<"*Camera retrieve error"<<endl;
-                    }
-                }
-                Mat res;
-                inRange(*imgOriginal,Scalar(low_b,low_g,low_r),Scalar(high_b,high_g,high_r),res);
-                imshow("ObjectDetection",res);
-                if((char)27==(char)waitKey(1)) {
-                    Camera->release();
-                    destroyAllWindows();
-                    break;
-                }
-            }
+            setupColorCalibration(colorThreshold,imgOriginal,Camera);
             break;
         }
         case 'n': {
@@ -469,6 +600,7 @@ int main()
 
     return 0;
 }
+
 
 
 

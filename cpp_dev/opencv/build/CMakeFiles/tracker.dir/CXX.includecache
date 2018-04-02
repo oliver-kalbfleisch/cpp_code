@@ -35,11 +35,17 @@ boost/thread/thread.hpp
 -
 boost/algorithm/clamp.hpp
 -
+boost/property_tree/ptree.hpp
+-
+boost/property_tree/json_parser.hpp
+-
 iostream
 -
 chrono
 -
 ctime
+-
+string
 -
 
 /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
