@@ -2,14 +2,13 @@
 using namespace cv;
 using namespace std;
 namespace pt= boost::property_tree;
-
-
-
 const int numThreads=4;
-const unsigned short frame_width=640;
-const unsigned short frame_height=480;
-const unsigned int x_offset= 30;
-const unsigned int y_offset= 30;
+
+const int frame_width=640;
+const int frame_height=480;
+const unsigned int x_offset= 40;
+const unsigned int y_offset= 40;
+const int cameraSide=1;
 //TODO solve via console input
 // Set correct value for camera -Left:8888 -Right :9999
 const string host="192.168.1.10";
@@ -26,6 +25,7 @@ stringstream ss;
 
 
 //color calibration values
+int numberOfTrackedColors= 5;
 int low_r=30;
 int low_g=30;
 int low_b=30;
@@ -41,8 +41,15 @@ int exposure=2;
 int contrast=47;
 int awb_red=0;
 int awb_blue=0;
-
 string windowTitle;
+
+//STEREO CALIBRATION VARIABLES
+//Extrinsics
+Mat R, R1, R2, P1, P2, Q;
+//Intrinsics
+Mat M1, M2, D1, D2;
+//Remap
+Mat rmap[2][2];
 
 void TaskComplete()
 {
@@ -66,7 +73,6 @@ void wait_for_pool()
 
 //function blurrs and erodes/dilliates the input image to remove high frequncy nose in the image
 void image_optimizations(Mat *imgThresholded)
-
 {   //cout<<"ThImg: "<<imgThresholded->size()<<endl;
     try {
         GaussianBlur(*imgThresholded,*imgThresholded,Size(3,3),0,0);
@@ -107,7 +113,7 @@ void detect_color(Mat image,vector<int> *thresholds,Mat *imgThresholded)
 }
 
 // function returns center point of color contour drived from input mask
-void detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
+int detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
 {
     //TODO CATCH CASE OF NO COLOR TO TRACK PRESENT
     vector<vector<Point> > contourPoints;
@@ -118,6 +124,10 @@ void detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
     catch(...)
     {
         cout<<"could not find contours\n";
+        *center= *center+*offset;
+        *offset=Point2i(0,0);
+        *roi=Rect(0,0,frame_width,frame_height);
+        return -1;
     }
     unsigned int largest_area=0;
     int largest_contour_index=-1;
@@ -140,12 +150,12 @@ void detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
         Rect bRect=minRect.boundingRect();
 
         /* ROI AREA CALULATION
-        # tl------tl+w
-        #  +       +
-        #  +       +
-        #  +       +
-        #  tl+h-----br
-        */
+         # tl------tl+w
+         #  +       +
+         #  +       +
+         #  +       +
+         #  tl+h-----br
+         */
         unsigned int x0=boost::algorithm::clamp((offset->x+bRect.tl().x-x_offset),0,frame_width);
         unsigned int y0=boost::algorithm::clamp((offset->y+bRect.tl().y-y_offset),0,frame_height);
 
@@ -173,7 +183,10 @@ void detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
         *center= *center+*offset;
         *offset=Point2i(0,0);
         *roi=Rect(0,0,frame_width,frame_height);
+        return -1;
     }
+    return 0;
+    
 }
 
 void getCameraFrame(circular_buffer<Mat> *buff,raspicam::RaspiCam_Cv *Camera )
@@ -225,7 +238,12 @@ void color_detectThread(vector<int> &color_boundary, Mat imgOriginal, Point2i &c
     }
     else {
         cout<<"skipped processing because of missing contour detection\n";
+        //reseting tracking pos
+        *&contourCenter= *&contourCenter+*&offset;
+        *&offset=Point2i(0,0);
+        *&roi=Rect(0,0,frame_width,frame_height);
         cout<<"count:"<<count<<endl;
+        
         TaskComplete();
     }
     //MULTITHREAD IMPLEMENTAION
@@ -315,7 +333,23 @@ void setupColorTrackbars()
     createTrackbar("Low B",::windowTitle,&low_b,255,low_b_thresh);
     createTrackbar("High B",::windowTitle,&high_b,255,high_b_thresh);
 }
-void saveDataToJSON(string fileName,float version, string colorMode, int numTrackedColors,vector< vector<int> > *&colorThreshold)
+void saveCameraDataToJSOn(string fileName,float version,vector<int> *calibData)
+{
+    pt::ptree dataRoot;
+    //Add metadta
+    dataRoot.put("version",version);
+    dataRoot.put("Saturation",calibData->at(0));
+    dataRoot.put("Brightness",calibData->at(1));
+    dataRoot.put("Gain",calibData->at(2));
+    dataRoot.put("Contrast",calibData->at(3));
+    dataRoot.put("Exposure",calibData->at(4));
+    dataRoot.put("awb red",calibData->at(5));
+    dataRoot.put("awb blue",calibData->at(6));
+    ofstream out(fileName);
+    pt::write_json(out,dataRoot);
+    out.close();
+}
+void saveColorDataToJSON(string fileName,float version, string colorMode, int numTrackedColors,vector< vector<int> > *&colorThreshold)
 {
     pt::ptree dataRoot;
     //Add metadta
@@ -347,6 +381,103 @@ void saveDataToJSON(string fileName,float version, string colorMode, int numTrac
     pt::write_json(out,dataRoot);
     out.close();
 }
+void setupCameraCalibration(Mat *imgOriginal,raspicam::RaspiCam_Cv *Camera )
+{
+    cout<<"*\n";
+    cout<<"Do you want to check Camera settings befor starting?\n This feature requires a display to be connected. (y/n) ";
+    char resp;
+    cin>>resp;
+    switch(resp)
+    {
+    case 'y':
+    {
+        cout<<"*\n";
+        cout<<"System will now switch to camera calibration mode. Press enter to set values when finished.";
+        cout<<"*\n";
+        setupCameraTrackbars();
+        //Setup Camera
+        if ( !Camera->open())
+        {
+            cout<<"*"<<endl;
+            cout << "Cannot open the web cam" << endl;
+            return;
+        }
+        cout<<"*"<<endl;
+        cout<<"*Camera warmup phase started"<<endl;
+        sleep(5);
+        cout<<"*"<<endl;
+        cout<<"*Warmup finished"<<endl;
+        bool calibrating=true;
+        while (calibrating) {
+            //grab camera Frame
+            bool grabbed=Camera->grab();
+            if(grabbed)
+            {
+                try {
+                    Camera->retrieve(*imgOriginal);
+                } catch(...)
+                {
+                    cout<<"*"<<endl;
+                    cout<<"*Camera retrieve error"<<endl;
+                }
+            }
+            //TODO use own setup method
+            Camera->set(CV_CAP_PROP_SATURATION,saturation);
+            Camera->set(CV_CAP_PROP_GAIN,gain);
+            Camera->set(CV_CAP_PROP_BRIGHTNESS,brightness);
+            Camera->set(CV_CAP_PROP_EXPOSURE,exposure);
+            Camera->set(CV_CAP_PROP_CONTRAST,contrast);
+            Camera->set(CV_CAP_PROP_WHITE_BALANCE_RED_V,awb_red);
+            Camera->set(CV_CAP_PROP_WHITE_BALANCE_BLUE_U,awb_blue);
+            imshow("Camera Calibration",*imgOriginal);
+            if((char)10==(char)waitKey(1)) {
+                //TODO write values to JSON format
+                destroyAllWindows();
+                Camera->release();
+                calibrating=false;
+                cout<<"*Calibration finished, using new values."<<endl;
+                cout<<"*\n";
+                cout<<"Do you want to save the new Values to a JSON file? (y/n)";
+                char saveFile;
+                cin>>saveFile;
+                switch(saveFile)
+                {
+                case 'n':
+                {
+                    cout<<"*\n"<<"System will use new values without saving to file.\n";
+                    break;
+                }
+                case 'y':
+                {
+                    cout<<"*\n"<<"Please enter filename for new file in format <filename>.json : ";
+                    string userFileName;
+                    cin>>userFileName;
+                    cout<<"New JSON file "<<userFileName<<" will be saved to directory of the executable.\n";
+                    //TODO save to JSON
+                    //saveColorDataToJSON(userFileName,1.0,"rgb",numInput,colorThreshold);
+                    vector<int> cameraCalibData;
+                    cameraCalibData.push_back (saturation);
+                    cameraCalibData.push_back (brightness);
+                    cameraCalibData.push_back (gain);
+                    cameraCalibData.push_back (contrast);
+                    cameraCalibData.push_back (exposure);
+                    cameraCalibData.push_back (awb_red);
+                    cameraCalibData.push_back (awb_blue);
+                    saveCameraDataToJSOn(userFileName,1.0,&cameraCalibData);
+                    break;
+                }
+                }
+            }
+        }
+    }
+    case 'n':
+    {
+        cout<<"*\n";
+        cout<<"*System will use predefined values for camera calibration.\n ";
+        break;
+    }
+    }
+}
 void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal,raspicam::RaspiCam_Cv *Camera )
 {
     cout<<"*"<<endl;
@@ -360,6 +491,7 @@ void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal
     {
         //Reassign pointer value without memory leak
         vector<vector<int> > *temp= new vector<vector<int> >(numInput);
+        numberOfTrackedColors=numInput;
         delete colorThreshold;
         colorThreshold=temp;
     }
@@ -387,7 +519,6 @@ void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal
     int colorCounter=1;
     ::windowTitle="Calibration for Color Nr. "+to_string(colorCounter);
     setupColorTrackbars();
-    //setupCameraTrackbars();
     while(calibrating)
     {
         //grab camera Frame
@@ -401,15 +532,6 @@ void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal
                 cout<<"*"<<endl;
                 cout<<"*Camera retrieve error"<<endl;
             }
-            /*//TODO use own setup method
-            Camera->set(CV_CAP_PROP_SATURATION,saturation);
-            Camera->set(CV_CAP_PROP_GAIN,gain);
-            Camera->set(CV_CAP_PROP_BRIGHTNESS,brightness);
-            Camera->set(CV_CAP_PROP_EXPOSURE,exposure);
-            Camera->set(CV_CAP_PROP_CONTRAST,contrast);
-            Camera->set(CV_CAP_PROP_WHITE_BALANCE_RED_V,awb_red);
-            Camera->set(CV_CAP_PROP_WHITE_BALANCE_BLUE_U,awb_blue);
-            imshow("Camera CAlibration",*imgOriginal);*/
             inRange(*imgOriginal,Scalar(low_b,low_g,low_r),Scalar(high_b,high_g,high_r),res);
             imshow(::windowTitle,res);
         }
@@ -438,12 +560,12 @@ void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal
                 }
                 case 'y':
                 {
-                    cout<<"*\n"<<"Please enter filename for new file in format <filename>.json : " ;
+                    cout<<"*\n"<<"Please enter filename for new file in format <filename>.json : ";
                     string userFileName;
                     cin>>userFileName;
                     cout<<"New JSON file "<<userFileName<<" will be saved to directory of the executable.\n";
                     //TODO save to JSON
-                    saveDataToJSON(userFileName,1.0,"rgb",numInput,colorThreshold);
+                    saveColorDataToJSON(userFileName,1.0,"rgb",numInput,colorThreshold);
                     break;
                 }
                 }
@@ -452,7 +574,46 @@ void setupColorCalibration(vector<vector<int> > *colorThreshold,Mat *imgOriginal
 
     }
 }
-void readJSONAndSetValues(vector<vector<int> > *&colorThreshold, string filepath)
+void readCameraJSONAndSetValues(raspicam::RaspiCam_Cv *Camera,string filepath)
+{
+    cout<<"*"<<endl;
+    cout<<"*Reading JSON Data from cameraCalibration.json to get values ..."<<endl;
+    //json file read preps
+    pt::ptree jsonRoot;
+    pt::read_json(filepath,jsonRoot);
+    float version= jsonRoot.get<float>("version");
+    cout<<"*"<<endl;
+    cout<<"*JSON File version: "<<version<<endl;
+    cout<<"*"<<endl;
+    saturation=jsonRoot.get<int>("Saturation");
+    cout<<"*Saturation: "<<saturation<<endl;
+    Camera->set(CV_CAP_PROP_SATURATION,saturation);
+    cout<<"*"<<endl;
+    brightness=jsonRoot.get<int>("Brightness");
+    Camera->set(CV_CAP_PROP_BRIGHTNESS,brightness);
+    cout<<"*Brightness: "<<brightness<<endl;
+    cout<<"*"<<endl;
+    gain=jsonRoot.get<int>("Gain");
+    Camera->set(CV_CAP_PROP_GAIN,gain);
+    cout<<"*Gain :"<<gain<<endl;
+    cout<<"*"<<endl;
+    contrast=jsonRoot.get<int>("Contrast");
+    Camera->set(CV_CAP_PROP_CONTRAST,contrast);
+    exposure=jsonRoot.get<int>("Exposure");
+    Camera->set(CV_CAP_PROP_EXPOSURE,exposure);
+    cout<<"*Exposure: "<<exposure<<endl;
+    cout<<"*"<<endl;
+    awb_red=jsonRoot.get<int>("awb red");
+    Camera->set(CV_CAP_PROP_WHITE_BALANCE_RED_V,awb_red);
+    cout<<"*awb red: "<<awb_red<<endl;
+    cout<<"*"<<endl;
+    awb_blue=jsonRoot.get<int>("awb blue");
+    Camera->set(CV_CAP_PROP_WHITE_BALANCE_BLUE_U,awb_blue);
+    cout<<"awb blue: "<<awb_blue<<endl;
+    cout<<"*"<<endl;
+
+}
+void readColorJSONAndSetValues(vector<vector<int> > *&colorThreshold, string filepath)
 {
 
     cout<<"*"<<endl;
@@ -468,6 +629,7 @@ void readJSONAndSetValues(vector<vector<int> > *&colorThreshold, string filepath
     cout<<"*Color Mode :"<<colorMode<<endl;
     cout<<"*"<<endl;
     int numColors=jsonRoot.get<int>("numTrackedColors");
+    numberOfTrackedColors=numColors;
     cout<<"*Number of colors tracked: "<<numColors<<endl;
     cout<<"*"<<endl;
     cout<<"*Color boundary values: "<<endl;
@@ -476,7 +638,7 @@ void readJSONAndSetValues(vector<vector<int> > *&colorThreshold, string filepath
     vector<vector<int> > *temp= new vector<vector<int> >(numColors);
     delete colorThreshold;
     colorThreshold=temp;
-    cout<<colorThreshold->size()<<endl;
+    cout<<"json read "<<colorThreshold->size()<<endl;
     //iterate over Dataset and display values that will be set
     for(pt::ptree::value_type &color : jsonRoot.get_child("colors"))
     {
@@ -503,55 +665,128 @@ void readJSONAndSetValues(vector<vector<int> > *&colorThreshold, string filepath
     }
 }
 
+int readAndSetStereoCalibValues(string intrinsic, string extrinsic, Size imageSize)
+{
+    //READ VALUES FROM GENERATED YAMLS
+    FileStorage fs;
+    try {
+        fs.open(extrinsic, FileStorage::READ);
+    }
+    catch(...)
+    {
+        cout<<"Error n firle read."<<endl;
+        return -1;
+    }
 
+    fs["R"] >> R;
+    fs["R1"] >> R1; //left
+    fs["R2"] >> R2; //right
+    fs["P1"] >> P1; //left
+    fs["P2"] >> P2; //right
+    fs["Q"]  >> Q;
+    fs.release();
+    fs.open(intrinsic,FileStorage::READ);
+    fs["M1"] >> M1; //left
+    fs["M2"] >> M2; //right
+    fs["D1"] >> D1; //left
+    fs["D2"] >> D2; //right
+    fs.release();
+
+    //Precompute map for cv::remap()
+    if(cameraSide == 0)
+    {
+        initUndistortRectifyMap(M1, D1, R1, P1, imageSize, CV_16SC2, rmap[0][0], rmap[0][1]);
+    }
+    else if (cameraSide == 1)
+    {
+        initUndistortRectifyMap(M2, D2, R2, P2, imageSize, CV_16SC2, rmap[1][0], rmap[1][1]);
+    }
+    else
+    {
+        cout<<"camera side input value incorrect. Aborting";
+        return -1;
+    }
+
+    return 0;
+}
+int applySteroCalib(Mat *img)
+{   //APPLY IMAGE TRANSFORMATION
+    Mat rimg;
+    try {
+        remap(*img, rimg, rmap[cameraSide][0], rmap[cameraSide][1], INTER_LINEAR);
+        *img=rimg;
+    }
+
+    catch(...)
+    {
+        std::cout << "error in remapping" << '\n';
+        return -1;
+    }
+
+    return 0;
+}
 int main()
 {
     //TODO ADD PAPRAM FOR CONFIG FILE SELECTION (OPT.)
-
-
     cout<<"****RHOT Realtime Hand and Object Tracker v0.1****"<<endl;
     cout<<"*"<<endl;
     cout<<"*System is setting up starting values..."<<endl;
     cout<<"*"<<endl;
     //preallocate Images for original and converted frames
     Mat *imgOriginal (new Mat());
-    vector<Point2i> *contourCenters=new vector<Point2i>(5);
     boost::asio::io_service udp_io_service;
     boost::asio::io_service mcService;
     UDPClient client(udp_io_service,host,port);
-    vector<Rect> *imageROIS =new vector<Rect>(5);
-    vector<Point2i>*offsets= new vector<Point2i>(5);
-    for(unsigned int i=0; i<imageROIS->size(); i++)
-    {
-        imageROIS-> at(i)= Rect(0,0,640,480);
-        offsets  -> at(i)= Point2i(0,0);
-    }
 
+    readAndSetStereoCalibValues("intrinsics.yml", "extrinsics.yml", Size(frame_width,frame_height));
     //Setup Camera
     raspicam::RaspiCam_Cv *Camera = new raspicam::RaspiCam_Cv;
     Camera->set(CV_CAP_PROP_FORMAT, CV_8UC3);
     Camera->set(CV_CAP_PROP_FRAME_WIDTH,frame_width);
     Camera->set(CV_CAP_PROP_FRAME_HEIGHT,frame_height);
     //Stop camera color drift by setting fixed values to gain and wb
-    Camera->set(CV_CAP_PROP_GAIN,27);
-    Camera->set(CV_CAP_PROP_WHITE_BALANCE_RED_V,0);
-    Camera->set(CV_CAP_PROP_WHITE_BALANCE_BLUE_U,0);
-    Camera->set(CV_CAP_PROP_EXPOSURE,2);
-    Camera->set(CV_CAP_PROP_CONTRAST,47);
-    Camera->set(CV_CAP_PROP_BRIGHTNESS,43);
-    Camera->set(CV_CAP_PROP_SATURATION,100);
+    readCameraJSONAndSetValues(Camera,"cameraCalib.json");
+    vector<Point2i> *contourCenters=new vector<Point2i>(numberOfTrackedColors);
+    vector<Rect> *imageROIS =new vector<Rect>(numberOfTrackedColors);
+    vector<Point2i>*offsets= new vector<Point2i>(numberOfTrackedColors);
+    for(unsigned int i=0; i<imageROIS->size(); i++)
+    {
+        imageROIS->at(i)= Rect(0,0,640,480);
+        offsets->at(i)= Point2i(0,0);
+    }
+    vector<vector<int> > *colorThreshold=new vector<vector<int> >(numberOfTrackedColors);
 
     //circular_buffer<Mat> *img_buffer= new circular_buffer<Mat>(5);
     //Default init
-    vector<vector<int> > *colorThreshold=new vector<vector<int> >(5);
-    cout<<"*The system has a set of predefined values for tracking colors.\n You can also switch to color calibration mode which does require a monitor to be conected."<<endl;
+    //TODO NumColors
+
+    cout<<"*The system loads color data from the colorCalibration.json for tracking colors.\n You can also switch to color calibration mode which does require a monitor to be conected."<<endl;
     cout<<"*"<<endl;
-    cout<<"*Do you want to continue with the default color values for 5 markers? (y/n)  ";
+    cout<<"*Do you want to load colorCalibration.json values? (y/n)  ";
     char response;
     cin>>response;
     switch (response) {
     case 'y': {
-        readJSONAndSetValues(colorThreshold,"colorCalibration.json");
+        readColorJSONAndSetValues(colorThreshold,"colorCalibration.json");
+        cout<<numberOfTrackedColors<<endl;
+        try {
+            vector<Point2i> *cctemp =new vector<Point2i>(numberOfTrackedColors);
+            delete contourCenters;
+            contourCenters= cctemp;
+            vector<Rect> *iroitemp=new vector<Rect>(numberOfTrackedColors);
+            delete imageROIS;
+            imageROIS=iroitemp;
+            vector<Point2i>*offstemp= new vector<Point2i>(numberOfTrackedColors);
+            delete offsets;
+            offsets=offstemp;
+            for(int i=0; i<numberOfTrackedColors; i++)
+            {
+                imageROIS->at(i)= Rect(0,0,640,480);
+                offsets->at(i)= Point2i(0,0);
+            }
+        } catch(...) {
+            cout<<"error in reset"<<endl;
+        }
         break;
     }
     case 'n': {
@@ -564,8 +799,25 @@ int main()
         switch(resp)
         {
         case 'y': {
-
+            setupCameraCalibration(imgOriginal,Camera);
             setupColorCalibration(colorThreshold,imgOriginal,Camera);
+            vector<Point2i> *cctemp =new vector<Point2i>(numberOfTrackedColors);
+            delete contourCenters;
+            contourCenters= cctemp;
+            cout<<contourCenters->size()<<endl;
+            vector<Rect> *iroitemp=new vector<Rect>(numberOfTrackedColors);
+            delete imageROIS;
+            imageROIS=iroitemp;
+            cout<<imageROIS->size()<<endl;
+            vector<Point2i>*offstemp= new vector<Point2i>(numberOfTrackedColors);
+            delete offsets;
+            offsets=offstemp;
+            cout<<offsets->size()<<endl;
+            for(int i=0; i<numberOfTrackedColors; i++)
+            {
+                imageROIS->at(i)= Rect(0,0,640,480);
+                offsets->at(i)= Point2i(0,0);
+            }
             break;
         }
         case 'n': {
@@ -588,18 +840,18 @@ int main()
     //cameraThread.detach();
     //setup threadpool
     /*
-    boost::asio::io_service ioService;
-    boost::thread_group threadpool;
-    //start processingimageROIS
-    cout<<"*\n";
-    cout<<"*Starting up Threadpool..."<<endl;
-    boost::asio::io_service::work work(ioService);
-    for(unsigned int i=0; i<4; i++)
-    {
+       boost::asio::io_service ioService;
+       boost::thread_group threadpool;
+       //start processingimageROIS
+       cout<<"*\n";
+       cout<<"*Starting up Threadpool..."<<endl;
+       boost::asio::io_service::work work(ioService);
+       for(unsigned int i=0; i<4; i++)
+       {
         threadpool.create_thread(boost::bind(&boost::asio::io_service::run,&ioService));
-    }*/
-    cout<<"*\n";
-    cout<<"*Threadpool ready."<<endl;
+       }*/
+    //  cout<<"*\n";
+    //  cout<<"*Threadpool ready."<<endl;
     cout<<"*"<<endl;
     cout<<"*Camera warmup phase started"<<endl;
     sleep(5);
@@ -616,11 +868,11 @@ int main()
     //Setup wait for start signal
     cout<<"*"<<endl;
     cout<<"*System currently waiting for Master start signal..."<<endl;
-    //MulticastReciever mcRecv(mcService);
+    MulticastReciever mcRecv(mcService);
     cout<<"*"<<endl;
     //DECOMENT AFTER DEBUGGING
-    //mcService.run();
-    //mcService.stop();
+    mcService.run();
+    mcService.stop();
 
     while(true) {
         bool grabbed=Camera->grab();
@@ -633,6 +885,8 @@ int main()
                 cout<<"*"<<endl;
                 cout<<"*Camera retrieve error"<<endl;
             }
+            t=clock();
+            applySteroCalib(imgOriginal);
             //CAMERATHREAD + IMG_BUFFER
             //if(img_buffer->empty()==false)
             //{
@@ -644,22 +898,19 @@ int main()
             //if(imgOriginal->cols>0 && imgOriginal->rows >0)
             //{
             //
-
-
-
-            t=clock();
-            for(unsigned int k=0; k<5; k++)
+            //TODO NUmCOLORS
+            for(int k=0; k<numberOfTrackedColors; k++)
             {
                 //TODO calculation of correct roi coordinates
                 Mat cropped;
                 try {
                     Mat cropped (*imgOriginal,imageROIS->at(k));
                     //SEQUENTIAL IMPL
-                    color_detectThread((*colorThreshold)[k],cropped,(*contourCenters)[k],imageROIS->at(k),offsets->at(k));/*
+                    color_detectThread((*colorThreshold)[k],cropped,(*contourCenters)[k],imageROIS->at(k),offsets->at(k));
                     //MULTITHREAD IMPLEMENTAION
-                    ioService.post(boost::bind(color_detectThread,boost::ref((*colorThreshold)[k]),cropped,boost::ref((*contourCenters)[k]),boost::ref(imageROIS->at(k)),boost::ref(offsets->at(k))));
-                    number_of_tasks++;
-                    * */
+                    //  ioService.post(boost::bind(color_detectThread,boost::ref((*colorThreshold)[k]),cropped,boost::ref((*contourCenters)[k]),boost::ref(imageROIS->at(k)),boost::ref(offsets->at(k))));
+                    //  number_of_tasks++;
+
                 }
                 catch(...)
                 {
@@ -671,16 +922,17 @@ int main()
 
             }
             //MULTITHREAD IMPLEMENTAION
-            /*
-            cout<<"waiting for pool"<<endl;
-            wait_for_pool();
-            * */
-            for(unsigned int i=0; i<(*contourCenters).size(); i++)
+
+            // cout<<"waiting for pool"<<endl;
+            //wait_for_pool();
+
+            for(int i=0; i<numberOfTrackedColors; i++)
             {
                 //ADD IN FOR UDP
                 ss<<((*contourCenters).at(i)+offsets->at(i))<<";";
                 //DEBUG
                 //cout<<(*contourCenters).at(i)<<"|"<<offsets->at(i)<<endl;
+                cout<<((*contourCenters).at(i)+offsets->at(i))<<endl;
                 circle(*imgOriginal,((*contourCenters).at(i)+offsets->at(i)),5,Scalar(0,0,255),-1);
                 rectangle(*imgOriginal,imageROIS->at(i),Scalar(255,0,0));
                 //DEBUG
@@ -689,6 +941,7 @@ int main()
             client.send(ss.str());
             ss.str(string());
             //UDP
+
             t=clock()-t;
             printf("%f seconds\n",((float)t)/CLOCKS_PER_SEC);
             //DEBUG
@@ -705,7 +958,7 @@ int main()
         //Wait for a keystroke in the window
         if((char)27==(char)waitKey(1)) {
             //delete img_buffer;
-           // ioService.stop();
+            // ioService.stop();
             //threadpool.join_all();
             destroyAllWindows();
             Camera->release();
@@ -721,7 +974,7 @@ int main()
     }
     Camera->release();
     //delete img_buffer;
-   // ioService.stop();
+    // ioService.stop();
     //threadpool.join_all();
     destroyAllWindows();
     delete Camera;
@@ -732,7 +985,3 @@ int main()
 
     return 0;
 }
-
-
-
-

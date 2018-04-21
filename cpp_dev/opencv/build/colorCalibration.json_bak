@@ -1,0 +1,57 @@
+{
+    "version": "1",
+    "colorMode": "rgb",
+    "numTrackedColors": "5",
+    "colors": [
+        {
+            "colorID": "0",
+            "name": "changeme",
+            "rUpper": "149",
+            "rLower": "100",
+            "gUpper": "177",
+            "gLower": "162",
+            "bUpper": "168",
+            "bLower": "132"
+        },
+        {
+            "colorID": "1",
+            "name": "changeme",
+            "rUpper": "180",
+            "rLower": "166",
+            "gUpper": "179",
+            "gLower": "167",
+            "bUpper": "74",
+            "bLower": "22"
+        },
+        {
+            "colorID": "2",
+            "name": "changeme",
+            "rUpper": "178",
+            "rLower": "169",
+            "gUpper": "180",
+            "gLower": "175",
+            "bUpper": "123",
+            "bLower": "99"
+        },
+        {
+            "colorID": "3",
+            "name": "changeme",
+            "rUpper": "193",
+            "rLower": "170",
+            "gUpper": "162",
+            "gLower": "156",
+            "bUpper": "183",
+            "bLower": "168"
+        },
+        {
+            "colorID": "4",
+            "name": "changeme",
+            "rUpper": "179",
+            "rLower": "161",
+            "gUpper": "181",
+            "gLower": "164",
+            "bUpper": "151",
+            "bLower": "89"
+        }
+    ]
+}

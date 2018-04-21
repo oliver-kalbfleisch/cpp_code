@@ -1,0 +1,3 @@
+/home/pi/Desktop/cpp_dev/opencv/stereo_calib/build/CMakeFiles/rebuild_cache.dir
+/home/pi/Desktop/cpp_dev/opencv/stereo_calib/build/CMakeFiles/edit_cache.dir
+/home/pi/Desktop/cpp_dev/opencv/stereo_calib/build/CMakeFiles/calibrator.dir

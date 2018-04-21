@@ -1,0 +1,17 @@
+{
+    "version": "1",
+    "colorMode": "rgb",
+    "numTrackedColors": "1",
+    "colors": [
+        {
+            "colorID": "0",
+            "name": "changeme",
+            "rUpper": "62",
+            "rLower": "36",
+            "gUpper": "73",
+            "gLower": "40",
+            "bUpper": "2",
+            "bLower": "0"
+        }
+    ]
+}

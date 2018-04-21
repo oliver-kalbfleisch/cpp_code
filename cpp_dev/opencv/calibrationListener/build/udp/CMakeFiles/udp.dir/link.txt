@@ -1,0 +1,2 @@
+/usr/bin/ar qc libudp.a  CMakeFiles/udp.dir/MulticastReciever.cpp.o
+/usr/bin/ranlib libudp.a

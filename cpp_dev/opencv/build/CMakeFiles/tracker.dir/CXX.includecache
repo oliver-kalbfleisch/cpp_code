@@ -21,6 +21,8 @@ trackingCore/UDP_Client.hpp
 /home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
 trackingCore/MulticastReciever.h
 /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
+opencv2/core/core.hpp
+-
 raspicam/raspicam_cv.h
 -
 unistd.h

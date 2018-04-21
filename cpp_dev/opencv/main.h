@@ -6,6 +6,7 @@
 #include "trackingCore/UDP_Client.hpp"
 #include "trackingCore/MulticastReciever.h"
 
+#include <opencv2/core/core.hpp>
 #include <raspicam/raspicam_cv.h>
 #include <unistd.h>
 #include <time.h>
@@ -20,6 +21,6 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-#include <ctime> 
+#include <ctime>
 #include <string>
 #endif
