@@ -81,14 +81,14 @@ void image_optimizations(Mat *imgThresholded)
         cout<<"error applying gaussian blurr\n";
     }
     try {
-        erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(3, 3)) );
-        dilate(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(3, 3)) );
+        erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(4, 4)) );
+        dilate(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(4, 4)) );
     } catch(...) {
         cout<<"error in morphological opening\n";
     }
     try {
-        dilate( *imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(3, 3)) );
-        erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(3, 3)) );
+        dilate( *imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(4, 4)) );
+        erode(*imgThresholded, *imgThresholded, getStructuringElement(MORPH_RECT, Size(4, 4)) );
     } catch(...) {
         cout<<"error in morphological closing\n";
     }
@@ -186,7 +186,7 @@ int detectContour(Mat *mask,Point2i *center, Rect *roi,Point2i *offset)
         return -1;
     }
     return 0;
-    
+
 }
 
 void getCameraFrame(circular_buffer<Mat> *buff,raspicam::RaspiCam_Cv *Camera )
@@ -243,7 +243,7 @@ void color_detectThread(vector<int> &color_boundary, Mat imgOriginal, Point2i &c
         *&offset=Point2i(0,0);
         *&roi=Rect(0,0,frame_width,frame_height);
         cout<<"count:"<<count<<endl;
-        
+
         TaskComplete();
     }
     //MULTITHREAD IMPLEMENTAION
@@ -749,6 +749,8 @@ int main()
     vector<Point2i> *contourCenters=new vector<Point2i>(numberOfTrackedColors);
     vector<Rect> *imageROIS =new vector<Rect>(numberOfTrackedColors);
     vector<Point2i>*offsets= new vector<Point2i>(numberOfTrackedColors);
+    stringstream logger;
+    ofstream outfile("tracking_values_uncalibrated_small_tube_markers.txt");
     for(unsigned int i=0; i<imageROIS->size(); i++)
     {
         imageROIS->at(i)= Rect(0,0,640,480);
@@ -873,11 +875,12 @@ int main()
     //DECOMENT AFTER DEBUGGING
     mcService.run();
     mcService.stop();
-
+    //int count=0;
     while(true) {
         bool grabbed=Camera->grab();
         if(grabbed)
         {
+            t=clock();
             try {
                 Camera->retrieve(*imgOriginal);
             } catch(...)
@@ -885,9 +888,10 @@ int main()
                 cout<<"*"<<endl;
                 cout<<"*Camera retrieve error"<<endl;
             }
-            t=clock();
-            applySteroCalib(imgOriginal);
+            //Stereo Rectification
+            //applySteroCalib(imgOriginal);
             //CAMERATHREAD + IMG_BUFFER
+
             //if(img_buffer->empty()==false)
             //{
             //Mat test=img_buffer->get().clone();
@@ -897,8 +901,6 @@ int main()
             //Check if buffer contains frames
             //if(imgOriginal->cols>0 && imgOriginal->rows >0)
             //{
-            //
-            //TODO NUmCOLORS
             for(int k=0; k<numberOfTrackedColors; k++)
             {
                 //TODO calculation of correct roi coordinates
@@ -921,57 +923,64 @@ int main()
                 }
 
             }
-            //MULTITHREAD IMPLEMENTAION
 
+            //MULTITHREAD IMPLEMENTAION
             // cout<<"waiting for pool"<<endl;
             //wait_for_pool();
-
-            for(int i=0; i<numberOfTrackedColors; i++)
+            t=clock()-t;
+            //kill frame time peaks
+            if((((float)t)/CLOCKS_PER_SEC)<0.05) {
+                //UDP
+                 for(int i=0; i<numberOfTrackedColors; i++)
             {
                 //ADD IN FOR UDP
                 ss<<((*contourCenters).at(i)+offsets->at(i))<<";";
+                //logger<<((*contourCenters).at(i)+offsets->at(i))<<";";
                 //DEBUG
-                //cout<<(*contourCenters).at(i)<<"|"<<offsets->at(i)<<endl;
-                cout<<((*contourCenters).at(i)+offsets->at(i))<<endl;
-                circle(*imgOriginal,((*contourCenters).at(i)+offsets->at(i)),5,Scalar(0,0,255),-1);
-                rectangle(*imgOriginal,imageROIS->at(i),Scalar(255,0,0));
+                //circle(*imgOriginal,((*contourCenters).at(i)+offsets->at(i)),5,Scalar(0,0,255),-1);
+                //rectangle(*imgOriginal,imageROIS->at(i),Scalar(255,0,0));
                 //DEBUG
             }
-            //UDP
-            client.send(ss.str());
-            ss.str(string());
-            //UDP
-
-            t=clock()-t;
-            printf("%f seconds\n",((float)t)/CLOCKS_PER_SEC);
-            //DEBUG
-            imshow("image",*imgOriginal);
-            //DEBUG
-            //usleep(30);
+                using namespace std::chrono;
+                {
+                    milliseconds ms= duration_cast< milliseconds >(system_clock::now().time_since_epoch());
+                    ss<<ms.count()<<";";
+                }
+                client.send(ss.str());
+                //logger<<((float)t)/CLOCKS_PER_SEC<<"\n";
+               
+                //UDP
+                printf("%f seconds\n",((float)t)/CLOCKS_PER_SEC);
+            }
+            //imshow("image",*imgOriginal);
         }
         else
         {
             cout<<"could not grab frame from camera"<<endl;
-
-            //usleep(300);
         }
         //Wait for a keystroke in the window
-        if((char)27==(char)waitKey(1)) {
-            //delete img_buffer;
-            // ioService.stop();
-            //threadpool.join_all();
-            destroyAllWindows();
-            Camera->release();
-            delete Camera;
-            delete contourCenters;
-            delete colorThreshold;
-            delete imageROIS;
-            delete offsets;
+        /*    if((char)27==(char)waitKey(1)) {
+                 //delete img_buffer;
+                 // ioService.stop();
+                 //threadpool.join_all();
+                 destroyAllWindows();
+                 Camera->release();
+                 delete Camera;
+                 delete contourCenters;
+                 delete colorThreshold;
+                 delete imageROIS;
+                 delete offsets;
 
-            return 0;
-        }
-
+                 return 0;
+             }
+        */
+        //count++;
+        //cout<<count<<endl;
+        //Clear stringstream from data
+         ss.str(string());
     }
+    //outfile<<logger.rdbuf();
+    //outfile.close();
     Camera->release();
     //delete img_buffer;
     // ioService.stop();

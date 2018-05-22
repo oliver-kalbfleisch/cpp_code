@@ -458,7 +458,7 @@ interface/vcos/vcos_attr.h
 
 ../src/./raspicamtypes.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
 string
 -
 fstream
@@ -466,23 +466,23 @@ fstream
 cstdarg
 -
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
 mmal/mmal.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/mmal/mmal.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/mmal/mmal.h
 mutex
 -
 string
 -
 raspicamtypes.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/raspicamtypes.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/raspicamtypes.h
 private_types.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
 threadcondition.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
 string
 -
 thread
@@ -492,55 +492,55 @@ mutex
 condition_variable
 -
 exceptions.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
 raspicamtypes.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/raspicamtypes.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/raspicamtypes.h
 mmal/mmal.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/mmal/mmal.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/mmal/mmal.h
 mmal/util/mmal_connection.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/mmal/util/mmal_connection.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/mmal/util/mmal_connection.h
 string
 -
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.cpp
 raspicam_cv.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
 private/private_impl.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
 iostream
 -
 opencv2/highgui/highgui.hpp
 -
 scaler.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
 opencv2/core/core.hpp
 -
 opencv2/highgui/highgui.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.cpp
 private_still/private_still_impl.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
 raspicam_still_cv.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
 scaler.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
 opencv2/highgui/highgui.hpp
 -
 raspicamtypes.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h
 cstdio
 -
 opencv2/core/core.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

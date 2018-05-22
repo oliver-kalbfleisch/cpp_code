@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.cpp
 MulticastReciever.h
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.h
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.h
 iostream
 -
 string
@@ -20,11 +20,11 @@ boost/asio.hpp
 boost/bind.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp
 cyclicBuffer.h
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.h
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.h
 cstdio
 -
 memory
@@ -32,7 +32,7 @@ memory
 mutex
 -
 opencv2/imgproc/imgproc.hpp
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/opencv2/imgproc/imgproc.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/opencv2/imgproc/imgproc.hpp
 
 /usr/local/include/opencv2/calib3d.hpp
 opencv2/core.hpp

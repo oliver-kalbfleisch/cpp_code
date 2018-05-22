@@ -4,7 +4,7 @@
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o
  ../src/raspicam_still_cv.h
  ../src/raspicamtypes.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp
  /usr/local/include/opencv/cxcore.h
  /usr/local/include/opencv2/calib3d.hpp
  /usr/local/include/opencv2/calib3d/calib3d_c.h

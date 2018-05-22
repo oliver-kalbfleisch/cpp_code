@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp" "/home/pi/Desktop/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
-  "/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp" "/home/pi/Desktop/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
+  "/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.cpp" "/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
+  "/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp" "/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

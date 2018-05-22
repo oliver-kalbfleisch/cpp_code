@@ -6,21 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/Desktop/cpp_dev/opencv/main.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/main.cpp
 main.h
-/home/pi/Desktop/cpp_dev/opencv/main.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/main.h
 
-/home/pi/Desktop/cpp_dev/opencv/main.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/main.h
 opencv2/highgui/highgui.hpp
-/home/pi/Desktop/cpp_dev/opencv/opencv2/highgui/highgui.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/opencv2/highgui/highgui.hpp
 opencv2/imgproc/imgproc.hpp
-/home/pi/Desktop/cpp_dev/opencv/opencv2/imgproc/imgproc.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/opencv2/imgproc/imgproc.hpp
 trackingCore/cyclicBuffer.h
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.h
 trackingCore/UDP_Client.hpp
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/UDP_Client.hpp
 trackingCore/MulticastReciever.h
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.h
 opencv2/core/core.hpp
 -
 raspicam/raspicam_cv.h
@@ -52,7 +52,7 @@ ctime
 string
 -
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.h
 iostream
 -
 string
@@ -62,7 +62,7 @@ boost/asio.hpp
 boost/bind.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/UDP_Client.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/UDP_Client.hpp
 iostream
 -
 boost/array.hpp
@@ -70,7 +70,7 @@ boost/array.hpp
 boost/asio.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.h
 cstdio
 -
 memory
@@ -78,7 +78,7 @@ memory
 mutex
 -
 opencv2/imgproc/imgproc.hpp
-/home/pi/Desktop/cpp_dev/opencv/trackingCore/opencv2/imgproc/imgproc.hpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/opencv2/imgproc/imgproc.hpp
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

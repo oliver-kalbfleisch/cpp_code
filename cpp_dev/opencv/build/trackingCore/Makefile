@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/opencv
+CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles /home/pi/Desktop/cpp_dev/opencv/build/trackingCore/CMakeFiles/progress.marks
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles 0
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore/CMakeFiles/progress.marks
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/clean
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,22 +97,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/preinstall
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/preinstall
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 trackingCore/CMakeFiles/trackingCore.dir/rule:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/CMakeFiles/trackingCore.dir/rule
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f CMakeFiles/Makefile2 trackingCore/CMakeFiles/trackingCore.dir/rule
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/rule
 
 # Convenience name for target.
@@ -122,7 +122,7 @@ trackingCore: trackingCore/CMakeFiles/trackingCore.dir/rule
 
 # fast build rule for target.
 trackingCore/fast:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/build
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/build
 .PHONY : trackingCore/fast
 
 MulticastReciever.o: MulticastReciever.cpp.o
@@ -131,7 +131,7 @@ MulticastReciever.o: MulticastReciever.cpp.o
 
 # target to build an object file
 MulticastReciever.cpp.o:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
 .PHONY : MulticastReciever.cpp.o
 
 MulticastReciever.i: MulticastReciever.cpp.i
@@ -140,7 +140,7 @@ MulticastReciever.i: MulticastReciever.cpp.i
 
 # target to preprocess a source file
 MulticastReciever.cpp.i:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
 .PHONY : MulticastReciever.cpp.i
 
 MulticastReciever.s: MulticastReciever.cpp.s
@@ -149,7 +149,7 @@ MulticastReciever.s: MulticastReciever.cpp.s
 
 # target to generate assembly for a file
 MulticastReciever.cpp.s:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
 .PHONY : MulticastReciever.cpp.s
 
 cyclicBuffer.o: cyclicBuffer.cpp.o
@@ -158,7 +158,7 @@ cyclicBuffer.o: cyclicBuffer.cpp.o
 
 # target to build an object file
 cyclicBuffer.cpp.o:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o
 .PHONY : cyclicBuffer.cpp.o
 
 cyclicBuffer.i: cyclicBuffer.cpp.i
@@ -167,7 +167,7 @@ cyclicBuffer.i: cyclicBuffer.cpp.i
 
 # target to preprocess a source file
 cyclicBuffer.cpp.i:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i
 .PHONY : cyclicBuffer.cpp.i
 
 cyclicBuffer.s: cyclicBuffer.cpp.s
@@ -176,7 +176,7 @@ cyclicBuffer.s: cyclicBuffer.cpp.s
 
 # target to generate assembly for a file
 cyclicBuffer.cpp.s:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s
 .PHONY : cyclicBuffer.cpp.s
 
 # Help Target
@@ -205,6 +205,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

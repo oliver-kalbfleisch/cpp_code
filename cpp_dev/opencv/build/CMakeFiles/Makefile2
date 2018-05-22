@@ -54,10 +54,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/opencv
+CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/tracker.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/build
 CMakeFiles/tracker.dir/all: trackingCore/CMakeFiles/trackingCore.dir/all
 	$(MAKE) -f CMakeFiles/tracker.dir/build.make CMakeFiles/tracker.dir/depend
 	$(MAKE) -f CMakeFiles/tracker.dir/build.make CMakeFiles/tracker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=1,2 "Built target tracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles --progress-num=1,2 "Built target tracker"
 .PHONY : CMakeFiles/tracker.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/tracker.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/tracker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/tracker.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles 0
 .PHONY : CMakeFiles/tracker.dir/rule
 
 # Convenience name for target.
@@ -121,7 +121,7 @@ trackingCore/preinstall:
 trackingCore/CMakeFiles/trackingCore.dir/all:
 	$(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/depend
 	$(MAKE) -f trackingCore/CMakeFiles/trackingCore.dir/build.make trackingCore/CMakeFiles/trackingCore.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=3,4,5 "Built target trackingCore"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles --progress-num=3,4,5 "Built target trackingCore"
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/all
 
 # Include target in all.
@@ -131,9 +131,9 @@ all: trackingCore/CMakeFiles/trackingCore.dir/all
 
 # Build rule for subdir invocation for target.
 trackingCore/CMakeFiles/trackingCore.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 trackingCore/CMakeFiles/trackingCore.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles 0
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/rule
 
 # Convenience name for target.

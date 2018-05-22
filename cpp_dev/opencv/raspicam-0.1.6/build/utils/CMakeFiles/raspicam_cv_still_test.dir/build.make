@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6
+CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build
 
 # Include any dependencies generated for this target.
 include utils/CMakeFiles/raspicam_cv_still_test.dir/depend.make
@@ -59,16 +59,16 @@ include utils/CMakeFiles/raspicam_cv_still_test.dir/flags.make
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o: utils/CMakeFiles/raspicam_cv_still_test.dir/flags.make
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o: ../utils/raspicam_cv_still_test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o"
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o -c /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o -c /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.i"
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp > CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.i
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp > CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.i
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.s"
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp -o CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.s
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_still_test.cpp -o CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.s
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o.requires:
 
@@ -139,23 +139,89 @@ utils/raspicam_cv_still_test: /usr/local/lib/libopencv_xphoto.so.3.3.1
 utils/raspicam_cv_still_test: /usr/local/lib/libopencv_imgproc.so.3.3.1
 utils/raspicam_cv_still_test: /usr/local/lib/libopencv_core.so.3.3.1
 utils/raspicam_cv_still_test: utils/CMakeFiles/raspicam_cv_still_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable raspicam_cv_still_test"
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raspicam_cv_still_test.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable raspicam_cv_still_test"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raspicam_cv_still_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 utils/CMakeFiles/raspicam_cv_still_test.dir/build: utils/raspicam_cv_still_test
 
 .PHONY : utils/CMakeFiles/raspicam_cv_still_test.dir/build
 
+# Object files for target raspicam_cv_still_test
+raspicam_cv_still_test_OBJECTS = \
+"CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o"
+
+# External object files for target raspicam_cv_still_test
+raspicam_cv_still_test_EXTERNAL_OBJECTS =
+
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: utils/CMakeFiles/raspicam_cv_still_test.dir/build.make
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: src/libraspicam.so.0.1.6
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: src/libraspicam_cv.so
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /opt/vc/lib/libmmal_core.so
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /opt/vc/lib/libmmal_util.so
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /opt/vc/lib/libmmal.so
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_stitching.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_superres.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_videostab.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_photo.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_aruco.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_bgsegm.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_bioinspired.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_ccalib.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_dpm.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_face.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_freetype.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_fuzzy.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_img_hash.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_line_descriptor.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_optflow.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_reg.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_rgbd.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_saliency.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_stereo.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_structured_light.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_phase_unwrapping.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_surface_matching.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_tracking.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_datasets.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_plot.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_text.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_dnn.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_xfeatures2d.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_ml.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_shape.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_video.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_ximgproc.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_calib3d.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_features2d.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_flann.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_highgui.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_videoio.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_xobjdetect.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_imgcodecs.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_objdetect.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_xphoto.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_imgproc.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: /usr/local/lib/libopencv_core.so.3.3.1
+utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test: utils/CMakeFiles/raspicam_cv_still_test.dir/relink.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/raspicam_cv_still_test.dir/relink.txt --verbose=$(VERBOSE)
+
+# Rule to relink during preinstall.
+utils/CMakeFiles/raspicam_cv_still_test.dir/preinstall: utils/CMakeFiles/CMakeRelink.dir/raspicam_cv_still_test
+
+.PHONY : utils/CMakeFiles/raspicam_cv_still_test.dir/preinstall
+
 utils/CMakeFiles/raspicam_cv_still_test.dir/requires: utils/CMakeFiles/raspicam_cv_still_test.dir/raspicam_cv_still_test.cpp.o.requires
 
 .PHONY : utils/CMakeFiles/raspicam_cv_still_test.dir/requires
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/clean:
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils && $(CMAKE_COMMAND) -P CMakeFiles/raspicam_cv_still_test.dir/cmake_clean.cmake
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils && $(CMAKE_COMMAND) -P CMakeFiles/raspicam_cv_still_test.dir/cmake_clean.cmake
 .PHONY : utils/CMakeFiles/raspicam_cv_still_test.dir/clean
 
 utils/CMakeFiles/raspicam_cv_still_test.dir/depend:
-	cd /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6 /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/utils/CMakeFiles/raspicam_cv_still_test.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6 /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/utils/CMakeFiles/raspicam_cv_still_test.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : utils/CMakeFiles/raspicam_cv_still_test.dir/depend
 

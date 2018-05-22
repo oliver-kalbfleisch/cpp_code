@@ -8,6 +8,10 @@ file(REMOVE_RECURSE
   "libraspicam.so"
   "libraspicam.so.0.1.6"
   "libraspicam.so.0.1"
+  "libraspicam.pdb"
+  "CMakeFiles/CMakeRelink.dir/libraspicam.so"
+  "CMakeFiles/CMakeRelink.dir/libraspicam.so.0.1.6"
+  "CMakeFiles/CMakeRelink.dir/libraspicam.so.0.1"
 )
 
 # Per-language clean rules from dependency scanning.

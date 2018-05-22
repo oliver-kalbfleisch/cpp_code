@@ -14,11 +14,11 @@ cstdio
 
 ../src/raspicamtypes.h
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_still_test.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_still_test.cpp
 fstream
 -
 cstdlib
 -
 raspicam_still.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_still.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_still.h
 

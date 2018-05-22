@@ -67,15 +67,15 @@ src/CMakeFiles/raspicam.dir/private/private_impl.cpp.o
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
  ../src/./raspicamtypes.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
 src/CMakeFiles/raspicam.dir/private/threadcondition.cpp.o
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
 src/CMakeFiles/raspicam.dir/private_still/private_still_impl.cpp.o
  ../dependencies/current/interface/mmal/mmal.h
  ../dependencies/current/interface/mmal/mmal_buffer.h
@@ -143,8 +143,8 @@ src/CMakeFiles/raspicam.dir/private_still/private_still_impl.cpp.o
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
  ../src/./raspicamtypes.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
 src/CMakeFiles/raspicam.dir/raspicam.cpp.o
  ../dependencies/current/interface/mmal/mmal.h
  ../dependencies/current/interface/mmal/mmal_buffer.h
@@ -207,13 +207,13 @@ src/CMakeFiles/raspicam.dir/raspicam.cpp.o
  ../dependencies/current/interface/vcos/vcos_timer.h
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h
 src/CMakeFiles/raspicam.dir/raspicam_still.cpp.o
  ../dependencies/current/interface/mmal/mmal.h
  ../dependencies/current/interface/mmal/mmal_buffer.h
@@ -277,7 +277,7 @@ src/CMakeFiles/raspicam.dir/raspicam_still.cpp.o
  ../dependencies/current/interface/vcos/vcos_timer.h
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicamtypes.h

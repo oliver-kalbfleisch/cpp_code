@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6
+CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,21 +79,10 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -124,9 +113,9 @@ list_install_components/fast: list_install_components
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -180,6 +169,11 @@ raspicam_cv/fast:
 	$(MAKE) -f src/CMakeFiles/raspicam_cv.dir/build.make src/CMakeFiles/raspicam_cv.dir/build
 .PHONY : raspicam_cv/fast
 
+# Manual pre-install relink rule for target.
+raspicam_cv/preinstall:
+	$(MAKE) -f src/CMakeFiles/raspicam_cv.dir/build.make src/CMakeFiles/raspicam_cv.dir/preinstall
+.PHONY : raspicam_cv/preinstall
+
 #=============================================================================
 # Target rules for targets named raspicam
 
@@ -192,6 +186,11 @@ raspicam: cmake_check_build_system
 raspicam/fast:
 	$(MAKE) -f src/CMakeFiles/raspicam.dir/build.make src/CMakeFiles/raspicam.dir/build
 .PHONY : raspicam/fast
+
+# Manual pre-install relink rule for target.
+raspicam/preinstall:
+	$(MAKE) -f src/CMakeFiles/raspicam.dir/build.make src/CMakeFiles/raspicam.dir/preinstall
+.PHONY : raspicam/preinstall
 
 #=============================================================================
 # Target rules for targets named raspicam_test
@@ -206,6 +205,11 @@ raspicam_test/fast:
 	$(MAKE) -f utils/CMakeFiles/raspicam_test.dir/build.make utils/CMakeFiles/raspicam_test.dir/build
 .PHONY : raspicam_test/fast
 
+# Manual pre-install relink rule for target.
+raspicam_test/preinstall:
+	$(MAKE) -f utils/CMakeFiles/raspicam_test.dir/build.make utils/CMakeFiles/raspicam_test.dir/preinstall
+.PHONY : raspicam_test/preinstall
+
 #=============================================================================
 # Target rules for targets named raspicam_still_test
 
@@ -218,6 +222,11 @@ raspicam_still_test: cmake_check_build_system
 raspicam_still_test/fast:
 	$(MAKE) -f utils/CMakeFiles/raspicam_still_test.dir/build.make utils/CMakeFiles/raspicam_still_test.dir/build
 .PHONY : raspicam_still_test/fast
+
+# Manual pre-install relink rule for target.
+raspicam_still_test/preinstall:
+	$(MAKE) -f utils/CMakeFiles/raspicam_still_test.dir/build.make utils/CMakeFiles/raspicam_still_test.dir/preinstall
+.PHONY : raspicam_still_test/preinstall
 
 #=============================================================================
 # Target rules for targets named raspicam_cv_still_test
@@ -232,6 +241,11 @@ raspicam_cv_still_test/fast:
 	$(MAKE) -f utils/CMakeFiles/raspicam_cv_still_test.dir/build.make utils/CMakeFiles/raspicam_cv_still_test.dir/build
 .PHONY : raspicam_cv_still_test/fast
 
+# Manual pre-install relink rule for target.
+raspicam_cv_still_test/preinstall:
+	$(MAKE) -f utils/CMakeFiles/raspicam_cv_still_test.dir/build.make utils/CMakeFiles/raspicam_cv_still_test.dir/preinstall
+.PHONY : raspicam_cv_still_test/preinstall
+
 #=============================================================================
 # Target rules for targets named raspicam_cv_test
 
@@ -245,6 +259,11 @@ raspicam_cv_test/fast:
 	$(MAKE) -f utils/CMakeFiles/raspicam_cv_test.dir/build.make utils/CMakeFiles/raspicam_cv_test.dir/build
 .PHONY : raspicam_cv_test/fast
 
+# Manual pre-install relink rule for target.
+raspicam_cv_test/preinstall:
+	$(MAKE) -f utils/CMakeFiles/raspicam_cv_test.dir/build.make utils/CMakeFiles/raspicam_cv_test.dir/preinstall
+.PHONY : raspicam_cv_test/preinstall
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -253,7 +272,6 @@ help:
 	@echo "... depend"
 	@echo "... install/local"
 	@echo "... install"
-	@echo "... install/strip"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... uninstall"

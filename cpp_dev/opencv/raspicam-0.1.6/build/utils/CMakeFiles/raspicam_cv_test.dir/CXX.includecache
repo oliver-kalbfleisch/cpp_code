@@ -12,7 +12,7 @@ opencv2/core/core.hpp
 opencv2/highgui/highgui.hpp
 -
 
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_test.cpp
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv_test.cpp
 iostream
 -
 ctime
@@ -24,7 +24,7 @@ fstream
 sstream
 -
 raspicam_cv.h
-/home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv.h
+/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/utils/raspicam_cv.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h

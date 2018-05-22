@@ -6,62 +6,62 @@
         {
             "colorID": "0",
             "name": "changeme",
-            "rUpper": "255",
-            "rLower": "211",
-            "gUpper": "95",
-            "gLower": "4",
-            "bUpper": "117",
-            "bLower": "26"
+            "rUpper": "60",
+            "rLower": "0",
+            "gUpper": "255",
+            "gLower": "61",
+            "bUpper": "32",
+            "bLower": "0"
         },
         {
             "colorID": "1",
             "name": "changeme",
-            "rUpper": "138",
+            "rUpper": "65",
             "rLower": "0",
             "gUpper": "255",
-            "gLower": "164",
-            "bUpper": "167",
-            "bLower": "54"
+            "gLower": "193",
+            "bUpper": "255",
+            "bLower": "0"
         },
         {
             "colorID": "2",
             "name": "changeme",
-            "rUpper": "252",
-            "rLower": "194",
-            "gUpper": "255",
-            "gLower": "184",
-            "bUpper": "106",
+            "rUpper": "255",
+            "rLower": "146",
+            "gUpper": "251",
+            "gLower": "217",
+            "bUpper": "124",
             "bLower": "0"
         },
         {
             "colorID": "3",
             "name": "changeme",
-            "rUpper": "1",
+            "rUpper": "36",
             "rLower": "0",
-            "gUpper": "209",
-            "gLower": "121",
+            "gUpper": "146",
+            "gLower": "0",
             "bUpper": "255",
-            "bLower": "143"
+            "bLower": "254"
         },
         {
             "colorID": "4",
             "name": "changeme",
-            "rUpper": "255",
-            "rLower": "220",
-            "gUpper": "179",
-            "gLower": "19",
-            "bUpper": "1",
-            "bLower": "0"
+            "rUpper": "234",
+            "rLower": "189",
+            "gUpper": "97",
+            "gLower": "0",
+            "bUpper": "255",
+            "bLower": "202"
         },
         {
             "colorID": "5",
             "name": "changeme",
             "rUpper": "255",
-            "rLower": "151",
-            "gUpper": "149",
-            "gLower": "0",
+            "rLower": "234",
+            "gUpper": "141",
+            "gLower": "36",
             "bUpper": "255",
-            "bLower": "167"
+            "bLower": "190"
         }
     ]
 }

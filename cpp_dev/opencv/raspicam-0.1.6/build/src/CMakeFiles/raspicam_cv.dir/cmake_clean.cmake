@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/raspicam_cv.dir/raspicam_still_cv.cpp.o"
   "libraspicam_cv.pdb"
   "libraspicam_cv.so"
+  "libraspicam_cv.pdb"
+  "CMakeFiles/CMakeRelink.dir/libraspicam_cv.so"
 )
 
 # Per-language clean rules from dependency scanning.

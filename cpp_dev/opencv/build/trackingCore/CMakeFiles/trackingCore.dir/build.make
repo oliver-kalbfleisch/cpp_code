@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/opencv
+CMAKE_SOURCE_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/opencv/build
+CMAKE_BINARY_DIR = /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build
 
 # Include any dependencies generated for this target.
 include trackingCore/CMakeFiles/trackingCore.dir/depend.make
@@ -59,16 +59,16 @@ include trackingCore/CMakeFiles/trackingCore.dir/flags.make
 
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o: trackingCore/CMakeFiles/trackingCore.dir/flags.make
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o: ../trackingCore/cyclicBuffer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o -c /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o -c /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp
 
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp > CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp > CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.i
 
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp -o CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/cyclicBuffer.cpp -o CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.s
 
 trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o.requires:
 
@@ -83,16 +83,16 @@ trackingCore/CMakeFiles/trackingCore.dir/cyclicBuffer.cpp.o.provides.build: trac
 
 trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o: trackingCore/CMakeFiles/trackingCore.dir/flags.make
 trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o: ../trackingCore/MulticastReciever.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o -c /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o -c /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.cpp
 
 trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp > CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.cpp > CMakeFiles/trackingCore.dir/MulticastReciever.cpp.i
 
 trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/opencv/trackingCore/MulticastReciever.cpp -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore/MulticastReciever.cpp -o CMakeFiles/trackingCore.dir/MulticastReciever.cpp.s
 
 trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o.requires:
 
@@ -117,9 +117,9 @@ trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/cyclicB
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/MulticastReciever.cpp.o
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/build.make
 trackingCore/libtrackingCore.a: trackingCore/CMakeFiles/trackingCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libtrackingCore.a"
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -P CMakeFiles/trackingCore.dir/cmake_clean_target.cmake
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trackingCore.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libtrackingCore.a"
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -P CMakeFiles/trackingCore.dir/cmake_clean_target.cmake
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/trackingCore.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 trackingCore/CMakeFiles/trackingCore.dir/build: trackingCore/libtrackingCore.a
@@ -132,10 +132,10 @@ trackingCore/CMakeFiles/trackingCore.dir/requires: trackingCore/CMakeFiles/track
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/requires
 
 trackingCore/CMakeFiles/trackingCore.dir/clean:
-	cd /home/pi/Desktop/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -P CMakeFiles/trackingCore.dir/cmake_clean.cmake
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore && $(CMAKE_COMMAND) -P CMakeFiles/trackingCore.dir/cmake_clean.cmake
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/clean
 
 trackingCore/CMakeFiles/trackingCore.dir/depend:
-	cd /home/pi/Desktop/cpp_dev/opencv/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/cpp_dev/opencv /home/pi/Desktop/cpp_dev/opencv/trackingCore /home/pi/Desktop/cpp_dev/opencv/build /home/pi/Desktop/cpp_dev/opencv/build/trackingCore /home/pi/Desktop/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/trackingCore /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/build/trackingCore/CMakeFiles/trackingCore.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : trackingCore/CMakeFiles/trackingCore.dir/depend
 

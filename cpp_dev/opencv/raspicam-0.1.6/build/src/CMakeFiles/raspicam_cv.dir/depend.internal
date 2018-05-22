@@ -64,13 +64,13 @@ src/CMakeFiles/raspicam_cv.dir/raspicam_cv.cpp.o
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
  ../src/./raspicamtypes.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/exceptions.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/private_types.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private/threadcondition.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_cv.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
  /usr/local/include/opencv/cxcore.h
  /usr/local/include/opencv2/calib3d.hpp
  /usr/local/include/opencv2/calib3d/calib3d_c.h
@@ -262,10 +262,10 @@ src/CMakeFiles/raspicam_cv.dir/raspicam_still_cv.cpp.o
  ../dependencies/current/interface/vcos/vcos_tls.h
  ../dependencies/current/interface/vcos/vcos_types.h
  ../src/./raspicamtypes.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.cpp
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
- /home/pi/Desktop/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/private_still/private_still_impl.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.cpp
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/raspicam_still_cv.h
+ /home/pi/Desktop/cpp_dev/git/cpp_code/cpp_dev/opencv/raspicam-0.1.6/src/scaler.h
  /usr/local/include/opencv/cxcore.h
  /usr/local/include/opencv2/calib3d.hpp
  /usr/local/include/opencv2/calib3d/calib3d_c.h
